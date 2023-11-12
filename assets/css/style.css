@@ -34,8 +34,16 @@ header {
 
 .row {
   white-space: pre-wrap;
-  height: 80px;
+  height: 62px;
   border-top: 1px solid white;
+  margin-top: 0;
+}
+
+.col-8,
+.offset-2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 62px;
 }
 
 .hour {
