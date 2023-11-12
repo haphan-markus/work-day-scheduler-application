@@ -11,12 +11,15 @@ function nth(i){
             case 1: return "st";
             case 2: return "nd";
             case 3: return "rd";
+            default: return "th";
         }
     }
 }
 
 
 console.log(nth(dayjs()));
+
+
 // * Present timeblocks for standard business hours when the user scrolls down.
  
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
