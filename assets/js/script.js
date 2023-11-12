@@ -1,16 +1,6 @@
 var currentDay = document.getElementById("currentDay");
 currentDay.innerHTML = dayjs().format("dddd, MMMM D") + nth(dayjs()) + " " + dayjs().format("YYYY");
 
-var am9 = document.getElementById('09');
-var am10 = document.getElementById('10');
-var am11 = document.getElementById('11');
-var pm12 = document.getElementById('12');
-var pm1 = document.getElementById('13');
-var pm2 = document.getElementById('14');
-var pm3 = document.getElementById('15');
-var pm4 = document.getElementById('16');
-var pm5 = document.getElementById('17');
-
 var textArea = document.querySelectorAll('textarea');
 
 textArea.forEach(function(elem){
@@ -30,12 +20,25 @@ console.log(textArea[0].id);
 console.log(dayjs().format("HH"));
 console.log(typeof(dayjs().format("HH"))); // Return as a string
 
-// am9.classList.add("future");
-// If the time is smaller than the real time, then put the class of past, present, future.
- 
+var textBtn = document.querySelectorAll('button');
+console.log(textBtn);
+
+var textBtnArr = [];
+textBtn.forEach(function(elem){
+    var value = document.getElementById(elem.id);
+    textBtnArr.push(value);
+    textBtnArr.forEach(function(i){
+        i.addEventListener("submit",function(){
+
+        })
+    })
+})
+console.log(textBtnArr);
+
+var textArray = 
+
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
- 
-// * Allow a user to enter an event when they click a timeblock
+
 
 // * Save the event in local storage when the save button is clicked in that timeblock.
 
@@ -54,4 +57,12 @@ function nth(i){
     }
 }
 
-console.log(nth(dayjs()));
+// var am9 = document.getElementById('09');
+// var am10 = document.getElementById('10');
+// var am11 = document.getElementById('11');
+// var pm12 = document.getElementById('12');
+// var pm1 = document.getElementById('13');
+// var pm2 = document.getElementById('14');
+// var pm3 = document.getElementById('15');
+// var pm4 = document.getElementById('16');
+// var pm5 = document.getElementById('17');
