@@ -1,5 +1,4 @@
 var am9 = document.getElementById('09');
-var am9 = document.getElementById('09');
 var am10 = document.getElementById('10');
 var am11 = document.getElementById('11');
 var pm12 = document.getElementById('12');
@@ -26,31 +25,37 @@ textArea.forEach(function(elem){
         textBlock.classList.add("present");
     }
 })
-console.log(textArea[0].id);
-
-console.log(dayjs().format("HH"));
-console.log(typeof(dayjs().format("HH"))); // Return as a string
 
 var textBtn = document.querySelectorAll('button'); // Query to select all buttons on the interface - from 9AM to 5PM
 console.log(textBtn);
 
-var textBtnArr = [];
+var textBtnArr = []; // Turn all elements in textBtn into an array of button object
 textBtn.forEach(function(elem){
     var value = document.getElementById(elem.id);
     textBtnArr.push(value);
-}) // Turn all elements in textBtn into an array of button object
+})
 console.log(textBtnArr);
 
-var workEvent9AM = [];
+
 var btn9 = document.getElementById(textBtnArr[0].id);
-console.log(btn9);
+var content = JSON.parse(window.localStorage.getItem("workEvent9AM"));
+if (document.getElementById(textArea[0].id).value != content) {
+    document.getElementById(textArea[0].id).value = content;
+}
+console.log("1" + document.getElementById(textArea[0].id).value);
+console.log("2" + JSON.parse(window.localStorage.getItem("workEvent9AM")));
+
 btn9.addEventListener('click',function(){
     console.log(textArea[0].id);
     let text = document.getElementById(textArea[0].id).value;
     console.log(text);
+    var workEvent9AM = [];
     workEvent9AM.push(text);
-    window.localStorage.setItem("workEvent9AM",JSON.stringify(workEvent9AM));
+    window.localStorage.setItem("workEvent9AM",JSON.stringify("workEvent9AM"));
+    
 })
+document.getElementById(textArea[0].id).value = JSON.parse(window.localStorage.getItem("workEvent9AM"));
+console.log("Detail: " + JSON.parse(window.localStorage.getItem("workEvent9AM")));
 
 
 // var workEvent = {
@@ -77,7 +82,7 @@ btn9.addEventListener('click',function(){
 //         })
 //     })
 // })
-
+// https://stackoverflow.com/questions/29504447/keep-textarea-contents-after-navigating-away-from-page
 
 // * Save the event in local storage when the save button is clicked in that timeblock.
 
