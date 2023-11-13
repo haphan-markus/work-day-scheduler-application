@@ -1,4 +1,3 @@
-var am9 = document.getElementById('09');
 var am10 = document.getElementById('10');
 var am11 = document.getElementById('11');
 var pm12 = document.getElementById('12');
@@ -27,7 +26,7 @@ textArea.forEach(function(elem){
 })
 
 var textBtn = document.querySelectorAll('button'); // Query to select all buttons on the interface - from 9AM to 5PM
-console.log(textBtn);
+// console.log(textBtn);
 
 var textBtnArr = []; // Turn all elements in textBtn into an array of button object
 textBtn.forEach(function(elem){
@@ -39,9 +38,10 @@ console.log(textBtnArr);
 
 var btn9 = document.getElementById(textBtnArr[0].id);
 var content = JSON.parse(window.localStorage.getItem("workEvent9AM"));
-if (document.getElementById(textArea[0].id).value != content) {
-    document.getElementById(textArea[0].id).value = content;
-}
+document.getElementById(textArea[0].id).value = content
+// if (document.getElementById(textArea[0].id).value != content) {
+//     ;
+// }
 console.log("1" + document.getElementById(textArea[0].id).value);
 console.log("2" + JSON.parse(window.localStorage.getItem("workEvent9AM")));
 
@@ -51,11 +51,31 @@ btn9.addEventListener('click',function(){
     console.log(text);
     var workEvent9AM = [];
     workEvent9AM.push(text);
-    window.localStorage.setItem("workEvent9AM",JSON.stringify("workEvent9AM"));
+    window.localStorage.setItem("workEvent9AM",JSON.stringify(workEvent9AM));
     
 })
-document.getElementById(textArea[0].id).value = JSON.parse(window.localStorage.getItem("workEvent9AM"));
-console.log("Detail: " + JSON.parse(window.localStorage.getItem("workEvent9AM")));
+// document.getElementById(textArea[0].id).value = JSON.parse(window.localStorage.getItem("workEvent9AM"));
+// console.log("Detail: " + JSON.parse(window.localStorage.getItem("workEvent9AM")));
+textBtnArr.forEach(function(event){
+    document.getElementById(event.id).addEventListener('click',function(){
+        var eventSchedule = JSON.parse(localStorage.getItem("eventSchedule")) || [
+            ['Event9AM',''],
+            ['Event10AM',''],
+            ['Event11AM',''],
+            ['Event12PM',''],
+            ['Event13PM',''],
+            ['Event14PM',''],
+            ['Event15PM',''],
+            ['Event16PM',''],
+            ['Event17PM','']
+        ]
+        for (let i = 0; i < textArea.length;i++){
+            let text = document.getElementById(textArea[i].id).value;
+            eventSchedule[i][1] = text;
+        }
+        localStorage.setItem("eventSchedule", JSON.stringify(eventSchedule));
+    })
+})
 
 
 // var workEvent = {
