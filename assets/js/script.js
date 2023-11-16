@@ -10,9 +10,9 @@ var pm5 = document.getElementById('17');
 var currentDay = document.getElementById("currentDay");
 currentDay.innerHTML = dayjs().format("dddd, MMMM D") + nth(dayjs()) + " " + dayjs().format("YYYY");
 
-var textArea = document.querySelectorAll('textarea'); // Query to select all textareas that are used to store the input value
+var textAreaEl = document.querySelectorAll('textarea'); // Query to select all textarea elements that are used to store the input value
 
-textArea.forEach(function(elem){
+textAreaEl.forEach(function(elem){
     let value =  parseInt(elem.id);
     console.log(value);
     let textBlock = document.getElementById(elem.id);
@@ -36,26 +36,31 @@ textBtn.forEach(function(elem){
 console.log(textBtnArr);
 
 
-var btn9 = document.getElementById(textBtnArr[0].id);
-var content = JSON.parse(window.localStorage.getItem("workEvent9AM"));
-document.getElementById(textArea[0].id).value = content
-// if (document.getElementById(textArea[0].id).value != content) {
+// var btn9 = document.getElementById(textBtnArr[0].id);
+// var content = JSON.parse(window.localStorage.getItem("workEvent9AM"));
+// document.getElementById(textAreaEl[0].id).value = content
+// if (document.getElementById(textAreaEl[0].id).value != content) {
 //     ;
 // }
-console.log("1" + document.getElementById(textArea[0].id).value);
-console.log("2" + JSON.parse(window.localStorage.getItem("workEvent9AM")));
+// console.log("1" + document.getElementById(textAreaEl[0].id).value);
+// console.log("2" + JSON.parse(window.localStorage.getItem("workEvent9AM")));
 
-btn9.addEventListener('click',function(){
-    console.log(textArea[0].id);
-    let text = document.getElementById(textArea[0].id).value;
-    console.log(text);
-    var workEvent9AM = [];
-    workEvent9AM.push(text);
-    window.localStorage.setItem("workEvent9AM",JSON.stringify(workEvent9AM));
+// btn9.addEventListener('click',function(){
+//     console.log(textAreaEl[0].id);
+//     let text = document.getElementById(textAreaEl[0].id).value;
+//     console.log(text);
+//     var workEvent9AM = [];
+//     workEvent9AM.push(text);
+//     window.localStorage.setItem("workEvent9AM",JSON.stringify(workEvent9AM));
     
-})
-// document.getElementById(textArea[0].id).value = JSON.parse(window.localStorage.getItem("workEvent9AM"));
+// })
+// document.getElementById(textAreaEl[0].id).value = JSON.parse(window.localStorage.getItem("workEvent9AM"));
 // console.log("Detail: " + JSON.parse(window.localStorage.getItem("workEvent9AM")));
+var eventSchedule = JSON.parse(window.localStorage.getItem("eventSchedule"));
+for (let i = 0; i < textAreaEl.length;i++) {
+    document.getElementById(textAreaEl[i].id).value = eventSchedule[i][1];
+}
+
 textBtnArr.forEach(function(event){
     document.getElementById(event.id).addEventListener('click',function(){
         var eventSchedule = JSON.parse(localStorage.getItem("eventSchedule")) || [
@@ -68,9 +73,9 @@ textBtnArr.forEach(function(event){
             ['Event15PM',''],
             ['Event16PM',''],
             ['Event17PM','']
-        ]
-        for (let i = 0; i < textArea.length;i++){
-            let text = document.getElementById(textArea[i].id).value;
+        ];
+        for (let i = 0; i < textAreaEl.length;i++){
+            let text = document.getElementById(textAreaEl[i].id).value;
             eventSchedule[i][1] = text;
         }
         localStorage.setItem("eventSchedule", JSON.stringify(eventSchedule));
@@ -91,11 +96,11 @@ textBtnArr.forEach(function(event){
 // }
 // window.localStorage.setItem("workEvent",JSON.stringify(workEvent));
 // console.log(workEvent);
-// When the button is submitted, the text in textarea will be stored into workEvent
+// When the button is submitted, the text in textareaEl will be stored into workEvent
 // textBtnArr.forEach(function(i){
 //     i.addEventListener("submit",function(){
 //         let value = parseInt(i.id);
-//         textArea.forEach(function(j){
+//         textAreaEl.forEach(function(j){
 //             if (value === parseInt(j.id)){
 //                 j.innerText
 //             }
