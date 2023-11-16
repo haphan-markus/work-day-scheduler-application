@@ -56,24 +56,24 @@ console.log(textBtnArr);
 // })
 // document.getElementById(textAreaEl[0].id).value = JSON.parse(window.localStorage.getItem("workEvent9AM"));
 // console.log("Detail: " + JSON.parse(window.localStorage.getItem("workEvent9AM")));
-var eventSchedule = JSON.parse(window.localStorage.getItem("eventSchedule"));
+var eventSchedule = JSON.parse(window.localStorage.getItem("eventSchedule")) || [
+    ['Event9AM',''],
+    ['Event10AM',''],
+    ['Event11AM',''],
+    ['Event12PM',''],
+    ['Event13PM',''],
+    ['Event14PM',''],
+    ['Event15PM',''],
+    ['Event16PM',''],
+    ['Event17PM','']
+];
 for (let i = 0; i < textAreaEl.length;i++) {
     document.getElementById(textAreaEl[i].id).value = eventSchedule[i][1];
 }
 
 textBtnArr.forEach(function(event){
     document.getElementById(event.id).addEventListener('click',function(){
-        var eventSchedule = JSON.parse(localStorage.getItem("eventSchedule")) || [
-            ['Event9AM',''],
-            ['Event10AM',''],
-            ['Event11AM',''],
-            ['Event12PM',''],
-            ['Event13PM',''],
-            ['Event14PM',''],
-            ['Event15PM',''],
-            ['Event16PM',''],
-            ['Event17PM','']
-        ];
+        // var eventSchedule = JSON.parse(localStorage.getItem("eventSchedule"));
         for (let i = 0; i < textAreaEl.length;i++){
             let text = document.getElementById(textAreaEl[i].id).value;
             eventSchedule[i][1] = text;
