@@ -98,6 +98,13 @@ header {
 
 .span-width {
   display: inline-block;
-
   width: 5rem;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  text-align: center;
 }

@@ -1,7 +1,10 @@
 var currentDay = document.getElementById("currentDay");
-currentDay.innerHTML = dayjs().format("dddd, MMMM D") + nth(dayjs()) + " " + dayjs().format("YYYY");
-
 var textAreaEl = document.querySelectorAll('textarea'); // Query to select all textarea elements that are used to store the input value
+var textBtn = document.querySelectorAll('button'); // Query to select all buttons on the interface - from 9AM to 5PM
+var textBtnArrEl = []; // Turn all elements in textBtn into an array of button object
+var savetoLocalStorageEl = document.getElementById('save-localstorage');
+
+currentDay.innerHTML = dayjs().format("dddd, MMMM D") + nth(dayjs()) + " " + dayjs().format("YYYY");
 
 textAreaEl.forEach(function(elem){
     let value =  parseInt(elem.id);
@@ -16,14 +19,11 @@ textAreaEl.forEach(function(elem){
     }
 })
 
-var textBtn = document.querySelectorAll('button'); // Query to select all buttons on the interface - from 9AM to 5PM
-
-var textBtnArr = []; // Turn all elements in textBtn into an array of button object
 textBtn.forEach(function(elem){
     var value = document.getElementById(elem.id);
-    textBtnArr.push(value);
+    textBtnArrEl.push(value);
 })
-console.log(textBtnArr);
+console.log(textBtnArrEl);
 
 var eventSchedule = JSON.parse(window.localStorage.getItem("eventSchedule")) || [
     ['Event9AM',''],
@@ -40,13 +40,14 @@ for (let i = 0; i < textAreaEl.length;i++) {
     document.getElementById(textAreaEl[i].id).value = eventSchedule[i][1];
 }
 
-textBtnArr.forEach(function(event){
+textBtnArrEl.forEach(function(event){
     document.getElementById(event.id).addEventListener('click',function(){
         for (let i = 0; i < textAreaEl.length;i++){
             let text = document.getElementById(textAreaEl[i].id).value;
             eventSchedule[i][1] = text;
         }
         localStorage.setItem("eventSchedule", JSON.stringify(eventSchedule));
+        setTime(savetoLocalStorageEl);
     })
 })
 
@@ -61,4 +62,16 @@ function nth(i){
             default: return "th";
         }
     }
+}
+
+function setTime(i){
+    var timeLeft = 1;
+    i.setAttribute('class','show');
+    setInterval(function(){
+        timeLeft--;
+        if (timeLeft === 0){
+            clearInterval();
+            i.setAttribute('class','hide');
+        }
+    },1000);
 }

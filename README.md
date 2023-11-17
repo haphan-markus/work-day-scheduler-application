@@ -20,3 +20,4 @@ SO THAT I can manage my time effectively
 
 ## Licence
 
+[MIT](https://choosealicense.com/licenses/mit/)
